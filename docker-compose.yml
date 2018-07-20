@@ -1,0 +1,13 @@
+
+version: "3.4"
+
+services:
+
+  graylog:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.1
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: false
+
+  graylog_db:
+    image: mongo:3.6
