@@ -1,0 +1,22 @@
+version: "3.4"
+
+services:
+
+  node_mars:
+    image: tomochain/infra-tomochain:devnet
+    tty: true
+    environment:
+      IDENTITY: mars
+      BOOTNODES_FILE: /tomochain/bootnodes/bootnodes
+      WS_SECRET_FILE: /run/secrets/netstats_ws_secret
+    secrets:
+      - netstats_ws_secret
+    volumes:
+      - bootnodes:/tomochain/bootnodes:ro
+
+secrets:
+  netstats_ws_secret:
+    external: true
+
+volumes:
+  bootnodes:
