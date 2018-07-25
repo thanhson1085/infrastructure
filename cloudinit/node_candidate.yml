@@ -1,0 +1,24 @@
+#cloud-config
+package_upgrade: true
+
+# ssh
+ssh_deletekeys: true
+disable_root: true
+ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDDj1+3hZmiKsO0sSwodK8MWpJJW79DrulxZMCig/SyTRTO3B/gpyOOaj7TjPR6z5Z7mz1lC/0qpdCq3U86qay3PiDql++sbqzwzE49jgiGsoOJyO50pqUSplrBu986JdT/dO/QFULTxjoS6iuphnk1qwzbqhl86kPBFrv+Akd4+QFHz3fg68dkrsNYh2ULLNY4CX9YSY0l6xEMYBh3QPgOP1Wjvoa0NEcS0Jj+w14QgKJGOZmM3SQNswFQBfgUHTM45THEBBein8Dw+Wb6zUI4I9t9IyZKkCb2O3e2v3MjtMar48eZz/BdSiCsmfBTRzpPyqTvRWtfALElq9vSw9vnatuXfPlYrtk3MeN3F3ltvlITTHQxm9BMklb7srIW9OWUBxf8M8BUfSuBNySsRchxkY0Oq323CncZGavUojM88hVcLUb8/ClGsJCuWE9hDl1JvD370CeNy8SkJEsIap9Oo8FltdJLLGIEUw7INyz0VP67oN3IW+9Uko8hzcdl/AcFZEbdPS1IZHKtSIzeWQ/8GNRVY7CM0SoRKmwvi4TZj1ZwhYP19iY+ZPYYtucfQJZwrScrsY4FbG8b1q3+4UUylo7yPs+P41satLm4WBHC4jFmfAqfa2LYdljkOcZ2oezTVgMFmey4DkcRdVacOkgAgX5lVa9dZfsAlHP6Q/S9Yw== etienne@etienne-pc
+
+# apt
+apt:
+  preserve_sources_list: true
+  sources:
+    curtin-dev-ppa.list:
+      source: "deb [arch=amd64] https://download.docker.com/linux/ubuntu $RELEASE stable"
+      keyid: 0EBFCD88
+
+packages:
+  - docker-ce
+
+
+  # groups
+  groups:
+    - docker: [ubuntu]
