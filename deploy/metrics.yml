@@ -8,12 +8,13 @@ services:
       - influxdb:/var/lib/influxdb
   telegraf:
     image: tomochain/infra-telegraf:devnet
-    hostname: devnet.tomochain.com
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /sys:/rootfs/sys:ro
       - /proc:/rootfs/proc:ro
       - /etc:/rootfs/etc:ro
+    deploy:
+      mode: global
   grafana:
     image: tomochain/infra-grafana:devnet
     environment:
